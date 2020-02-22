@@ -231,10 +231,10 @@
 
 			} );
 
-			codemirror.on( 'change', function() {
+			codemirror.on( "change", function() {
 
-				buttonSave.style.display = '';
-				buttonDownload.style.display = 'none';
+				buttonSave.style.display = "";
+				buttonDownload.style.display = "none";
 
 				if ( documents[ 0 ].autoupdate === false ) return;
 
@@ -243,21 +243,21 @@
 
 			} );
 
-			// toolbar
+		//	toolbar.
 
-			var toolbar = document.getElementById( 'toolbar' );
+			var toolbar = document.getElementById( "toolbar" );
 
-			var buttonUpdate = document.createElement( 'button' );
-			buttonUpdate.className = 'button';
+			var buttonUpdate = document.createElement( "button" );
+			buttonUpdate.className = "button";
 
-			var checkbox = document.createElement( 'input' );
+			var checkbox = document.createElement( "input" );
 			checkbox.type = "checkbox";
 			checkbox.style.display = "none";
 
 			if ( documents[ 0 ].autoupdate === true ) checkbox.checked = true;
 
-			checkbox.style.margin = '-4px 4px -4px 0px';
-			checkbox.addEventListener( 'click', function ( event ) {
+			checkbox.style.margin = "-4px 4px -4px 0px";
+			checkbox.addEventListener( "click", function ( event ) {
 
 				event.stopPropagation();
 
@@ -272,8 +272,10 @@
 			buttonUpdate.addEventListener( "click", function ( event ) {
 
 				update();
+				console.clear(); // hack.
 
 			}, false );
+
 			toolbar.appendChild( buttonUpdate );
 
 			var buttonHide = document.createElement( 'button' );
