@@ -319,12 +319,14 @@
 			menu.appendChild( buttonDownload );
 
         //
-			var buttonUpload = document.createElement( 'a' );
-			buttonUpload.className = 'button';
-			buttonUpload.style.display = 'none';
-			buttonUpload.download = 'index.html';
-			buttonUpload.textContent = 'upload';
-			menu.appendChild( buttonUpload );
+			var fileInput = document.createElement("input");
+			fileInput.style.display = "none";
+			document.body.appendChild( fileInput );
+
+			var buttonOpen = document.createElement("a");
+			buttonOpen.className = 'button';
+			buttonOpen.textContent = 'Open';
+			menu.appendChild( buttonOpen );
         //
 
 			var buttonShare = document.createElement( 'button' );
@@ -381,7 +383,7 @@
 			menu.appendChild( buttonAbout );
 
 
-			// popup
+		// popup.
 
 			var popup = ( function () {
 
@@ -461,9 +463,9 @@
 			} )();
 
 
-			// events
+		// events.
 
-			document.addEventListener( 'drop', function ( event ) {
+			document.addEventListener( "drop", function ( event ) {
 
 				event.preventDefault();
 				event.stopPropagation();
@@ -484,6 +486,39 @@
 				reader.readAsText( file );
 
 			}, false );
+
+		//
+
+			buttonOpen.addEventListener( "click", function( event ) {
+				
+				fileInput.value = "";
+				fileInput.click();
+
+			}, false );
+
+			fileInput.addEventListener( "change", function( event ) {
+
+				event.preventDefault();
+				event.stopPropagation();
+
+				var file = fileInput.files[ 0 ];
+
+				documents[ 0 ].filename = file.name;
+				documents[ 0 ].filetype = file.type;
+
+				var reader = new FileReader();
+
+				reader.onload = function ( event ) {
+
+					codemirror.setValue( event.target.result );
+
+				};
+
+				reader.readAsText( file );
+
+			}, false );
+
+		//
 
 			document.addEventListener( 'keydown', function ( event ) {
 
@@ -509,7 +544,7 @@
 			}, false );
 
 
-			// actions
+		// actions.
 
 			function update() {
 
@@ -591,7 +626,7 @@
 
 					}
 
-					//
+				//
 
 					try {
 
