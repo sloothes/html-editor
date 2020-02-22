@@ -251,7 +251,8 @@
 			buttonUpdate.className = 'button';
 
 			var checkbox = document.createElement( 'input' );
-			checkbox.type = 'checkbox';
+			checkbox.type = "checkbox";
+			checkbox.style.display = "none";
 
 			if ( documents[ 0 ].autoupdate === true ) checkbox.checked = true;
 
@@ -266,9 +267,9 @@
 
 			}, false );
 			buttonUpdate.appendChild( checkbox );
-			buttonUpdate.appendChild( document.createTextNode( 'update' ) );
+			buttonUpdate.appendChild( document.createTextNode( "update" ) );
 
-			buttonUpdate.addEventListener( 'click', function ( event ) {
+			buttonUpdate.addEventListener( "click", function ( event ) {
 
 				update();
 
